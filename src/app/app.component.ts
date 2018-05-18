@@ -87,14 +87,14 @@ export class AppComponent implements AfterViewChecked{
     }
   };
 
-  constructor(){
-    this.addPaypalScript().then(() => {
-      this.paypalButtons.forEach(button => {
-      paypal.Button.render(this.setPayPalConfig(button.paymentAmount, button.styleName), '#paypal-checkout'+ button.paymentAmount);
-      this.paypalLoad = false;
-      })
-      paypal.Button.render(this.paypalConfig, '#paypal-checkout-btn');
-    }); 
+  constructor(){    
+    //   this.addPaypalScript().then(() => {
+    //   this.paypalButtons.forEach(button => {
+    //   paypal.Button.render(this.setPayPalConfig(button.paymentAmount, button.styleName), '#paypal-checkout'+ button.paymentAmount);
+    //   this.paypalLoad = false;
+    //   })
+    //   paypal.Button.render(this.paypalConfig, '#paypal-checkout-btn');
+    // }); 
   }  
   
   ngAfterViewChecked(): void {
@@ -104,15 +104,15 @@ export class AppComponent implements AfterViewChecked{
     //     this.paypalLoad = false;
     //   })
     // }
-    // if (!this.addScript) {
-    //   this.addPaypalScript().then(() => {
-    //     this.paypalButtons.forEach(button => {
-    //       paypal.Button.render(this.setPayPalConfig(button.paymentAmount, button.styleName), '#paypal-checkout'+ button.paymentAmount);
-    //       this.paypalLoad = false;
-    //       })
-    //       paypal.Button.render(this.paypalConfig, '#paypal-checkout-btn');
-    //   })
-    // }
+    if (!this.addScript) {
+      this.addPaypalScript().then(() => {
+        this.paypalButtons.forEach(button => {
+          paypal.Button.render(this.setPayPalConfig(button.paymentAmount, button.styleName), '#paypal-checkout'+ button.paymentAmount);
+          this.paypalLoad = false;
+          })
+          paypal.Button.render(this.paypalConfig, '#paypal-checkout-btn');
+      })
+    }
   };
 
   addPaypalScript() {
